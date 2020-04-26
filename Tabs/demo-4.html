@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabs 选项卡(初始版)</title>
-  <style>
-  .container {
+  <title>Tabs 用jQuery 实现</title>
+</head>
+<style>
+   .container {
     max-width: 800px;
     margin: 30px auto;
     border-radius: 4px;
@@ -40,11 +41,9 @@
     display: block;
   }
 
-  </style>
-</head>
-
+</style>
 <body>
-   <div class="container">
+  <div class="container">
     <h2>Tab选项卡</h2>
     <div class="tabs">
       <div class="tab-header">
@@ -63,26 +62,8 @@
     </div>
   </div>
 </body>
+<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
 <script>
-//用$ 简单包装 , 让原生api 模仿jQuery
-  const $ = s => document.querySelector(s)
-  // 获取 伪数组
-  const $$ = s => document.querySelectorAll(s)
-  // 获取DOM 节点
-  const $$tabItems = $$('.tabs .tab-item')
-  const $$tabPanels = $$('.tabs .tab-panel')
-  // 
-  $$tabItems.forEach($tab => {
-    $tab.onclick = function() {
-      $$tabItems.forEach($tab => $tab.classList.remove('active'))
-      this.classList.add('active')
-      //  用[...xxx] 完成伪数组的转变
-      let index = [...$$tabItems].indexOf(this)
-      $$tabPanels.forEach($panel => $panel.classList.remove('active'))
-      $$tabPanels[index].classList.add('active')
-    }
-  })
-
-
+  $('.tabs .tab-header').on()
 </script>
 </html>
