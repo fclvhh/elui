@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs 选项卡(初始版)</title>
+</head>
+<style>
+  .container {
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0,  0.3);
+    padding: 16px;
+  }
+  .tabs .tab-header{
+    display: flex;
+    font-size: 13px;
+    color: #303030;
+    line-height: 30px;
+    font-weight: 500;
+    border-bottom: 2px solid #ddd;
+  }
+  .tabs .tab-item {
+    margin-right: 30px;
+    margin-bottom: -2px;
+    cursor: pointer;
+  }
+  /* 鼠标点击 激活 active */
+  .tabs .tab-item.active {
+    color: #409eff;
+    border-bottom: 2px solid #409eff;
+  }
+  .tabs .tab-panel {
+    padding: 16px 0;
+    font-size: 14px;
+    display: none;;
+  }
+  /* 结构展示的激活 */
+  .tabs .tab-panel.active {
+    display: block;
+  }
+  </style>
+</style>
+<body>
+   <div class="container">
+    <h2>Tab选项卡</h2>
+    <div class="tabs">
+      <div class="tab-header">
+        <!-- 这里虽然简单 , 但是存在css和js功能上的耦合 -->
+        <span class="tab-item active">用户管理</span>
+        <span class="tab-item">配置管理</span>
+        <span class="tab-item">角色管理</span>
+        <span class="tab-item">定时任务补偿</span>
+      </div>
+      <div class="tab-content">
+        <div class="tab-panel active">用户管理</div>
+        <div class="tab-panel">配置管理</div>
+        <div class="tab-panel">角色管理</div>
+        <div class="tab-panel">定时任务补偿</div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+//用$ 简单包装 , 让原生api 模仿jQuery
+  const $ = s => document.querySelector(s)
+  // 获取 伪数组
+  const $$ = s => document.querySelectorAll(s)
+  // 获取DOM 节点
+  const $$tabItems = $$('.tabs .tab-item')
+  const $$tabPanels = $$('.tabs .tab-panel')
+  // 
+  $$tabItems.forEach($tab => {
+    $tab.onclick = function() {
+      $$tabItems.forEach($tab => $tab.classList.remove('active'))
+      this.classList.add('active')
+      //  用[...xxx] 完成伪数组的转变
+      let index = [...$$tabItems].indexOf(this)
+      $$tabPanels.forEach($panel => $panel.classList.remove('active'))
+      $$tabPanels[index].classList.add('active')
+    }
+  })
+
+
+</script>
+</html>
