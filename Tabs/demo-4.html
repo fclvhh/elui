@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabs 用jQuery 实现</title>
-</head>
-<style>
-   .container {
-    max-width: 800px;
-    margin: 30px auto;
-    border-radius: 4px;
-    box-shadow: 0 0 4px 0px rgba(0, 0, 0,  0.3);
-    padding: 16px;
-  }
-  .tabs .tab-header{
-    display: flex;
-    font-size: 13px;
-    color: #303030;
-    line-height: 30px;
-    font-weight: 500;
-    border-bottom: 2px solid #ddd;
-  }
-  .tabs .tab-item {
-    margin-right: 30px;
-    margin-bottom: -2px;
-    cursor: pointer;
-  }
-  /* 鼠标点击 激活 active */
-  .tabs .tab-item.active {
-    color: #409eff;
-    border-bottom: 2px solid #409eff;
-  }
-  .tabs .tab-panel {
-    padding: 16px 0;
-    font-size: 14px;
-    display: none;;
-  }
-  /* 结构展示的激活 */
-  .tabs .tab-panel.active {
-    display: block;
-  }
-
-</style>
-<body>
-  <div class="container">
-    <h2>Tab选项卡</h2>
-    <div class="tabs">
-      <div class="tab-header">
-        <!-- 这里虽然简单 , 但是存在css和js功能上的耦合 -->
-        <span class="tab-item active">用户管理</span>
-        <span class="tab-item">配置管理</span>
-        <span class="tab-item">角色管理</span>
-        <span class="tab-item">定时任务补偿</span>
-      </div>
-      <div class="tab-content">
-        <div class="tab-panel active">用户管理</div>
-        <div class="tab-panel">配置管理</div>
-        <div class="tab-panel">角色管理</div>
-        <div class="tab-panel">定时任务补偿</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs 用jQuery 实现</title>
+  </head>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      border-radius: 4px;
+      box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.3);
+      padding: 16px;
+    }
+    .tabs .tab-header {
+      display: flex;
+      font-size: 13px;
+      color: #303030;
+      line-height: 30px;
+      font-weight: 500;
+      border-bottom: 2px solid #ddd;
+    }
+    .tabs .tab-item {
+      margin-right: 30px;
+      margin-bottom: -2px;
+      cursor: pointer;
+    }
+    /* 鼠标点击 激活 active */
+    .tabs .tab-item.active {
+      color: #409eff;
+      border-bottom: 2px solid #409eff;
+    }
+    .tabs .tab-panel {
+      padding: 16px 0;
+      font-size: 14px;
+      display: none;
+    }
+    /* 结构展示的激活 */
+    .tabs .tab-panel.active {
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h2>Tab选项卡</h2>
+      <div class="tabs">
+        <div class="tab-header">
+          <!-- 这里虽然简单 , 但是存在css和js功能上的耦合 -->
+          <span class="tab-item active">用户管理</span>
+          <span class="tab-item">配置管理</span>
+          <span class="tab-item">角色管理</span>
+          <span class="tab-item">定时任务补偿</span>
+        </div>
+        <div class="tab-content">
+          <div class="tab-panel active">用户管理</div>
+          <div class="tab-panel">配置管理</div>
+          <div class="tab-panel">角色管理</div>
+          <div class="tab-panel">定时任务补偿</div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
-<script>
-  $('.tabs .tab-header').on()
-</script>
+  </body>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+  <script>
+    $(".tabs .tab-header").on("click", function(e) {
+      let _index = $(".tabs .tab-header")
+        .children()
+        .index($(e.target));
+      console.log(1)
+      console.log(_index)
+      $(e.target).addClass("active").siblings().removeClass('active')
+      let $$panelArr = $('.tabs .tab-content').children()
+      $$panelArr.eq(_index).addClass('active').siblings().removeClass('active')
+    });
+  </script>
 </html>
